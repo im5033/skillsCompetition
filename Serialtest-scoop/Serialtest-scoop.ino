@@ -67,7 +67,7 @@ void emptyws2812() {
   bcb = 0;
 }
 /*
-void Breathe_LED() {
+  void Breathe_LED() {
   while (1) {
     for (int bright = 255; bright >= 0; bright -= 25) {
       for (int i = 0; i < 8; i++)
@@ -96,12 +96,12 @@ void Breathe_LED() {
       break;
     }
   }
-}*/
+  }*/
 
-  int bright = 255;
-  int increment = 25;
-  void Breathe_LED()
-  {
+int bright = 255;
+int increment = 25;
+void Breathe_LED()
+{
   val = analogRead(potpin);
   dt = map(val, 0, 1023, 0, 25);
   sleep(dt);
@@ -111,13 +111,13 @@ void Breathe_LED() {
     leds[i].fadeToBlackBy(bright);
     FastLED.show();
   }
-  if((bright + 25) > 255 || (bright - 25) < 0)
+  if ((bright + 25) > 255 || (bright - 25) < 0)
   {
     increment = -increment;
   }
   bright += increment;
 
-  }
+}
 
 void mod2() {
   for ( i = 0; i < 8; i++)
@@ -306,6 +306,8 @@ char str_in_temp;
 char tt;
 int times;
 int ppp = 0;
+char oldledStatus [] = "1234567800qwer";
+char ledStatus[] = "1234567890qwer";
 
 void IOProcess::loop()
 {
@@ -320,7 +322,7 @@ void IOProcess::loop()
   //sleep(dt);
   if (val1 == LOW)
   {
-    Serial.println("?");
+    Serial.print("?");
     jobnumber();
   } else if (val2 == LOW)
   {
@@ -368,10 +370,54 @@ void IOProcess::loop()
       tIndex++;
     }
   }
+  ledStatus[0] = '[';
+  //itoa(val1, &ledStatus[1], 1);
+  //itoa(val2, &ledStatus[2], 1);
+  //itoa(val3, &ledStatus[3], 1);
+  //itoa(val4, &ledStatus[4], 1);
+  //const int led2[] = {7, 6, 13, 12, 11, 10, 9, 8}; //針對8隻腳個別控制
+  ledStatus[1] = status (digitalRead(inPin1));
+  ledStatus[2] = status(digitalRead(inPin2));
+  ledStatus[3] = status(digitalRead(inPin3));
+  ledStatus[4] = status(digitalRead(inPin4));
+  ledStatus[5] = status(digitalRead(7));/////////順序反了
+  ledStatus[6] = status(digitalRead(6));
+  ledStatus[7] = status(digitalRead(13));
+  ledStatus[8] = status(digitalRead(12));
+  ledStatus[9] = status(digitalRead(11));
+  ledStatus[10] = status(digitalRead(10));
+  ledStatus[11] = status(digitalRead(9));
+  ledStatus[12] = status(digitalRead(8));
+  ledStatus[13] = ']';
+  if (strcmp(oldledStatus, ledStatus) == 0)
+  {
+
+  } else
+  {
+    Serial.println(ledStatus);
+    strcpy(oldledStatus, ledStatus);
+  }
+
+  //oldledStatus = ledStatus;
+  delay(100);
+
+}
+char status(int dig)
+{
+  if (dig == 0)
+  {
+    return '0';
+  } else
+  {
+    return '1';
+  }
+
 }
 void timer::setup() {
 
 }
+
+
 void timer::loop() {
   int t1 = 0;
   int dis1 = 0;
@@ -680,7 +726,7 @@ void loop()
       outputbyte(0);
       digitalWrite(A4, HIGH);
     }
-    if(str_in == '@')return;
+    if (str_in == '@')return;
     str_in = ' ';
   }
 }
