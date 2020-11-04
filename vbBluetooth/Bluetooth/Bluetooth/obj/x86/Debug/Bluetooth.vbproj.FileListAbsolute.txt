@@ -1,0 +1,27 @@
+C:\Users\USER\AppData\Local\Temporary Projects\Bluetooth\bin\Debug\Bluetooth.exe
+C:\Users\USER\AppData\Local\Temporary Projects\Bluetooth\bin\Debug\Bluetooth.pdb
+C:\Users\USER\AppData\Local\Temporary Projects\Bluetooth\bin\Debug\Bluetooth.xml
+C:\Users\USER\AppData\Local\Temporary Projects\Bluetooth\obj\x86\Debug\Bluetooth.Form1.resources
+C:\Users\USER\AppData\Local\Temporary Projects\Bluetooth\obj\x86\Debug\Bluetooth.Resources.resources
+C:\Users\USER\AppData\Local\Temporary Projects\Bluetooth\obj\x86\Debug\Bluetooth.vbproj.GenerateResource.Cache
+C:\Users\USER\AppData\Local\Temporary Projects\Bluetooth\obj\x86\Debug\Bluetooth.exe
+C:\Users\USER\AppData\Local\Temporary Projects\Bluetooth\obj\x86\Debug\Bluetooth.xml
+C:\Users\USER\AppData\Local\Temporary Projects\Bluetooth\obj\x86\Debug\Bluetooth.pdb
+C:\Users\USER\Desktop\vbBluetooth\Bluetooth\Bluetooth\obj\x86\Debug\Bluetooth.exe
+C:\Users\USER\Desktop\vbBluetooth\Bluetooth\Bluetooth\obj\x86\Debug\Bluetooth.xml
+C:\Users\USER\Desktop\vbBluetooth\Bluetooth\Bluetooth\obj\x86\Debug\Bluetooth.pdb
+C:\Users\USER\Desktop\vbBluetooth\Bluetooth\Bluetooth\bin\Debug\Bluetooth.exe
+C:\Users\USER\Desktop\vbBluetooth\Bluetooth\Bluetooth\bin\Debug\Bluetooth.pdb
+C:\Users\USER\Desktop\vbBluetooth\Bluetooth\Bluetooth\bin\Debug\Bluetooth.xml
+C:\Users\USER\Desktop\vbBluetooth\Bluetooth\Bluetooth\obj\x86\Debug\Bluetooth.Form1.resources
+C:\Users\USER\Desktop\vbBluetooth\Bluetooth\Bluetooth\obj\x86\Debug\Bluetooth.Resources.resources
+C:\Users\USER\Desktop\vbBluetooth\Bluetooth\Bluetooth\obj\x86\Debug\Bluetooth.vbproj.GenerateResource.Cache
+C:\Users\ssoon\Desktop\vbBluetooth\Bluetooth\Bluetooth\obj\x86\Debug\Bluetooth.exe
+C:\Users\ssoon\Desktop\vbBluetooth\Bluetooth\Bluetooth\obj\x86\Debug\Bluetooth.xml
+C:\Users\ssoon\Desktop\vbBluetooth\Bluetooth\Bluetooth\obj\x86\Debug\Bluetooth.pdb
+C:\Users\ssoon\Desktop\vbBluetooth\Bluetooth\Bluetooth\bin\Debug\Bluetooth.exe
+C:\Users\ssoon\Desktop\vbBluetooth\Bluetooth\Bluetooth\bin\Debug\Bluetooth.pdb
+C:\Users\ssoon\Desktop\vbBluetooth\Bluetooth\Bluetooth\bin\Debug\Bluetooth.xml
+C:\Users\ssoon\Desktop\vbBluetooth\Bluetooth\Bluetooth\obj\x86\Debug\Bluetooth.Form1.resources
+C:\Users\ssoon\Desktop\vbBluetooth\Bluetooth\Bluetooth\obj\x86\Debug\Bluetooth.Resources.resources
+C:\Users\ssoon\Desktop\vbBluetooth\Bluetooth\Bluetooth\obj\x86\Debug\Bluetooth.vbproj.GenerateResource.Cache
