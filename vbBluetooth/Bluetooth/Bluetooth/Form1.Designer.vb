@@ -74,6 +74,10 @@ Partial Class Form1
         Me.OvalShape1 = New Microsoft.VisualBasic.PowerPacks.OvalShape()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Button27 = New System.Windows.Forms.Button()
+        Me.Button17 = New System.Windows.Forms.Button()
+        Me.Button26 = New System.Windows.Forms.Button()
+        Me.Button28 = New System.Windows.Forms.Button()
+        Me.Button29 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Button1
@@ -501,7 +505,7 @@ Partial Class Form1
         '
         Me.OvalShape8.BackColor = System.Drawing.SystemColors.ActiveBorder
         Me.OvalShape8.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque
-        Me.OvalShape8.Location = New System.Drawing.Point(1204, 142)
+        Me.OvalShape8.Location = New System.Drawing.Point(1266, 223)
         Me.OvalShape8.Name = "OvalShape8"
         Me.OvalShape8.Size = New System.Drawing.Size(50, 50)
         '
@@ -509,7 +513,7 @@ Partial Class Form1
         '
         Me.OvalShape7.BackColor = System.Drawing.SystemColors.ActiveBorder
         Me.OvalShape7.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque
-        Me.OvalShape7.Location = New System.Drawing.Point(1146, 142)
+        Me.OvalShape7.Location = New System.Drawing.Point(1200, 223)
         Me.OvalShape7.Name = "OvalShape7"
         Me.OvalShape7.Size = New System.Drawing.Size(50, 50)
         '
@@ -517,7 +521,7 @@ Partial Class Form1
         '
         Me.OvalShape6.BackColor = System.Drawing.SystemColors.ActiveBorder
         Me.OvalShape6.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque
-        Me.OvalShape6.Location = New System.Drawing.Point(1088, 142)
+        Me.OvalShape6.Location = New System.Drawing.Point(1134, 223)
         Me.OvalShape6.Name = "OvalShape6"
         Me.OvalShape6.Size = New System.Drawing.Size(50, 50)
         '
@@ -525,7 +529,7 @@ Partial Class Form1
         '
         Me.OvalShape5.BackColor = System.Drawing.SystemColors.ActiveBorder
         Me.OvalShape5.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque
-        Me.OvalShape5.Location = New System.Drawing.Point(1030, 142)
+        Me.OvalShape5.Location = New System.Drawing.Point(1068, 223)
         Me.OvalShape5.Name = "OvalShape5"
         Me.OvalShape5.Size = New System.Drawing.Size(50, 50)
         '
@@ -533,7 +537,7 @@ Partial Class Form1
         '
         Me.OvalShape4.BackColor = System.Drawing.SystemColors.ActiveBorder
         Me.OvalShape4.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque
-        Me.OvalShape4.Location = New System.Drawing.Point(972, 142)
+        Me.OvalShape4.Location = New System.Drawing.Point(1002, 223)
         Me.OvalShape4.Name = "OvalShape4"
         Me.OvalShape4.Size = New System.Drawing.Size(50, 50)
         '
@@ -541,7 +545,7 @@ Partial Class Form1
         '
         Me.OvalShape3.BackColor = System.Drawing.SystemColors.ActiveBorder
         Me.OvalShape3.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque
-        Me.OvalShape3.Location = New System.Drawing.Point(914, 142)
+        Me.OvalShape3.Location = New System.Drawing.Point(936, 223)
         Me.OvalShape3.Name = "OvalShape3"
         Me.OvalShape3.Size = New System.Drawing.Size(50, 50)
         '
@@ -549,7 +553,7 @@ Partial Class Form1
         '
         Me.OvalShape2.BackColor = System.Drawing.SystemColors.ActiveBorder
         Me.OvalShape2.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque
-        Me.OvalShape2.Location = New System.Drawing.Point(856, 142)
+        Me.OvalShape2.Location = New System.Drawing.Point(870, 223)
         Me.OvalShape2.Name = "OvalShape2"
         Me.OvalShape2.Size = New System.Drawing.Size(50, 50)
         '
@@ -557,7 +561,7 @@ Partial Class Form1
         '
         Me.OvalShape1.BackColor = System.Drawing.SystemColors.ActiveBorder
         Me.OvalShape1.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque
-        Me.OvalShape1.Location = New System.Drawing.Point(798, 142)
+        Me.OvalShape1.Location = New System.Drawing.Point(804, 223)
         Me.OvalShape1.Name = "OvalShape1"
         Me.OvalShape1.Size = New System.Drawing.Size(50, 50)
         '
@@ -565,7 +569,7 @@ Partial Class Form1
         '
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("新細明體", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
-        Me.Label8.Location = New System.Drawing.Point(804, 215)
+        Me.Label8.Location = New System.Drawing.Point(804, 160)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(141, 27)
         Me.Label8.TabIndex = 49
@@ -582,11 +586,56 @@ Partial Class Form1
         Me.Button27.Text = "Odd~Even"
         Me.Button27.UseVisualStyleBackColor = True
         '
+        'Button17
+        '
+        Me.Button17.Font = New System.Drawing.Font("新細明體", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
+        Me.Button17.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.Button17.Location = New System.Drawing.Point(809, 328)
+        Me.Button17.Name = "Button17"
+        Me.Button17.Size = New System.Drawing.Size(85, 34)
+        Me.Button17.TabIndex = 53
+        Me.Button17.Text = "Button1"
+        Me.Button17.UseVisualStyleBackColor = True
+        '
+        'Button26
+        '
+        Me.Button26.Font = New System.Drawing.Font("新細明體", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
+        Me.Button26.Location = New System.Drawing.Point(941, 328)
+        Me.Button26.Name = "Button26"
+        Me.Button26.Size = New System.Drawing.Size(85, 34)
+        Me.Button26.TabIndex = 54
+        Me.Button26.Text = "Button2"
+        Me.Button26.UseVisualStyleBackColor = True
+        '
+        'Button28
+        '
+        Me.Button28.Font = New System.Drawing.Font("新細明體", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
+        Me.Button28.Location = New System.Drawing.Point(1073, 328)
+        Me.Button28.Name = "Button28"
+        Me.Button28.Size = New System.Drawing.Size(85, 34)
+        Me.Button28.TabIndex = 55
+        Me.Button28.Text = "Button3"
+        Me.Button28.UseVisualStyleBackColor = True
+        '
+        'Button29
+        '
+        Me.Button29.Font = New System.Drawing.Font("新細明體", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
+        Me.Button29.Location = New System.Drawing.Point(1205, 328)
+        Me.Button29.Name = "Button29"
+        Me.Button29.Size = New System.Drawing.Size(85, 34)
+        Me.Button29.TabIndex = 56
+        Me.Button29.Text = "Button4"
+        Me.Button29.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1381, 566)
+        Me.Controls.Add(Me.Button29)
+        Me.Controls.Add(Me.Button28)
+        Me.Controls.Add(Me.Button26)
+        Me.Controls.Add(Me.Button17)
         Me.Controls.Add(Me.Button27)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Label7)
@@ -684,5 +733,9 @@ Partial Class Form1
     Friend WithEvents OvalShape9 As Microsoft.VisualBasic.PowerPacks.OvalShape
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents Button27 As System.Windows.Forms.Button
+    Friend WithEvents Button17 As System.Windows.Forms.Button
+    Friend WithEvents Button26 As System.Windows.Forms.Button
+    Friend WithEvents Button28 As System.Windows.Forms.Button
+    Friend WithEvents Button29 As System.Windows.Forms.Button
 
 End Class

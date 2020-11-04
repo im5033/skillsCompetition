@@ -3,6 +3,18 @@ Imports System.IO.Ports
 Imports System.Runtime.InteropServices
 
 Public Class Form1
+    Dim but1 As String
+    Dim but2 As String
+    Dim but3 As String
+    Dim but4 As String
+    Dim light1 As String
+    Dim light2 As String
+    Dim light3 As String
+    Dim light4 As String
+    Dim light5 As String
+    Dim light6 As String
+    Dim light7 As String
+    Dim light8 As String
     Dim comPORT As String          '宣告變數com端端口'
     Dim data As String              '燈的顏色'
     Dim receivedData As String  '宣告變數要接收com 上的數據'
@@ -77,14 +89,21 @@ Public Class Form1
         textIndex = textIndex + 1
     End Sub
     Function LightStatus(ByVal abc As String)
-        Dim light1 = Mid(abc, 6, 1)
-        Dim light2 = Mid(abc, 7, 1)
-        Dim light3 = Mid(abc, 8, 1)
-        Dim light4 = Mid(abc, 9, 1)
-        Dim light5 = Mid(abc, 10, 1)
-        Dim light6 = Mid(abc, 11, 1)
-        Dim light7 = Mid(abc, 12, 1)
-        Dim light8 = Mid(abc, 13, 1)
+        but1 = Mid(abc, 2, 1)
+        but2 = Mid(abc, 3, 1)
+        but3 = Mid(abc, 4, 1)
+        but4 = Mid(abc, 5, 1)
+        light1 = Mid(abc, 6, 1)
+        light2 = Mid(abc, 7, 1)
+        light3 = Mid(abc, 8, 1)
+        light4 = Mid(abc, 9, 1)
+        light5 = Mid(abc, 10, 1)
+        light6 = Mid(abc, 11, 1)
+        light7 = Mid(abc, 12, 1)
+        light8 = Mid(abc, 13, 1)
+        If but1 = 1 Then
+            Button17.BackColor = Color.Olive
+        End If
         If light1 = 1 Then
             OvalShape1.BackColor = Color.Yellow
         Else
@@ -204,6 +223,7 @@ Public Class Form1
     End Sub
     Private Sub Button23_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button23.Click
         SerialPort1.Write("0")
+        LED()
     End Sub
     Private Sub Button24_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button24.Click
         Dim selectedItem As String = ComboBox3.Items(ComboBox3.SelectedIndex)
