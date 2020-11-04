@@ -25,3 +25,12 @@ C:\Users\ssoon\Desktop\vbBluetooth\Bluetooth\Bluetooth\bin\Debug\Bluetooth.xml
 C:\Users\ssoon\Desktop\vbBluetooth\Bluetooth\Bluetooth\obj\x86\Debug\Bluetooth.Form1.resources
 C:\Users\ssoon\Desktop\vbBluetooth\Bluetooth\Bluetooth\obj\x86\Debug\Bluetooth.Resources.resources
 C:\Users\ssoon\Desktop\vbBluetooth\Bluetooth\Bluetooth\obj\x86\Debug\Bluetooth.vbproj.GenerateResource.Cache
+C:\skillsCompetition\vbBluetooth\Bluetooth\Bluetooth\obj\x86\Debug\Bluetooth.exe
+C:\skillsCompetition\vbBluetooth\Bluetooth\Bluetooth\obj\x86\Debug\Bluetooth.xml
+C:\skillsCompetition\vbBluetooth\Bluetooth\Bluetooth\obj\x86\Debug\Bluetooth.pdb
+C:\skillsCompetition\vbBluetooth\Bluetooth\Bluetooth\obj\x86\Debug\Bluetooth.Form1.resources
+C:\skillsCompetition\vbBluetooth\Bluetooth\Bluetooth\obj\x86\Debug\Bluetooth.Resources.resources
+C:\skillsCompetition\vbBluetooth\Bluetooth\Bluetooth\obj\x86\Debug\Bluetooth.vbproj.GenerateResource.Cache
+C:\skillsCompetition\vbBluetooth\Bluetooth\Bluetooth\bin\Debug\Bluetooth.exe
+C:\skillsCompetition\vbBluetooth\Bluetooth\Bluetooth\bin\Debug\Bluetooth.pdb
+C:\skillsCompetition\vbBluetooth\Bluetooth\Bluetooth\bin\Debug\Bluetooth.xml

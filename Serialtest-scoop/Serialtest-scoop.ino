@@ -54,8 +54,14 @@ void outputbyte(uchar b)  //針對匯流排一次輸出
 }
 void empty244()   //244的清零函數
 {
-  PORTB = (PORTB & ~0x3f) | (0x00 & 0x3f);
-  PORTD = (PORTD & ~0xeA) | (0x00 & 0xeA);
+  digitalWrite(6, LOW);
+  digitalWrite(7, LOW);
+  digitalWrite(8, LOW);
+  digitalWrite(9, LOW);
+  digitalWrite(10, LOW);
+  digitalWrite(11, LOW);
+  digitalWrite(12, LOW);
+  digitalWrite(13, LOW);
 }
 void emptyws2812() {
   for (int ws = 0; ws < 8; ws++) {
@@ -376,18 +382,18 @@ void IOProcess::loop()
   //itoa(val3, &ledStatus[3], 1);
   //itoa(val4, &ledStatus[4], 1);
   //const int led2[] = {7, 6, 13, 12, 11, 10, 9, 8}; //針對8隻腳個別控制
-  ledStatus[1] = status (digitalRead(inPin1));
-  ledStatus[2] = status(digitalRead(inPin2));
-  ledStatus[3] = status(digitalRead(inPin3));
-  ledStatus[4] = status(digitalRead(inPin4));
-  ledStatus[5] = status(digitalRead(7));/////////順序反了
-  ledStatus[6] = status(digitalRead(6));
-  ledStatus[7] = status(digitalRead(13));
-  ledStatus[8] = status(digitalRead(12));
-  ledStatus[9] = status(digitalRead(11));
-  ledStatus[10] = status(digitalRead(10));
-  ledStatus[11] = status(digitalRead(9));
-  ledStatus[12] = status(digitalRead(8));
+  ledStatus[1] = buttonstatus(digitalRead(inPin1));
+  ledStatus[2] = buttonstatus(digitalRead(inPin2));
+  ledStatus[3] = buttonstatus(digitalRead(inPin3));
+  ledStatus[4] = buttonstatus(digitalRead(inPin4));
+  ledStatus[5] = ledstatus(digitalRead(8));
+  ledStatus[6] = ledstatus(digitalRead(9));
+  ledStatus[7] = ledstatus(digitalRead(10));
+  ledStatus[8] = ledstatus(digitalRead(11));
+  ledStatus[9] = ledstatus(digitalRead(12));
+  ledStatus[10] = ledstatus(digitalRead(13));
+  ledStatus[11] = ledstatus(digitalRead(6));
+  ledStatus[12] = ledstatus(digitalRead(7));
   ledStatus[13] = ']';
   if (strcmp(oldledStatus, ledStatus) == 0)
   {
@@ -402,7 +408,7 @@ void IOProcess::loop()
   delay(100);
 
 }
-char status(int dig)
+char ledstatus(int dig)
 {
   if (dig == 0)
   {
@@ -410,6 +416,17 @@ char status(int dig)
   } else
   {
     return '1';
+  }
+
+}
+char buttonstatus(int dig)
+{
+  if (dig == 0)
+  {
+    return '1';
+  } else
+  {
+    return '0';
   }
 
 }
@@ -586,23 +603,10 @@ void loop()
       empty244();
       digitalWrite(3, HIGH);
     }
-    else if (str_in == 'A') {
-      digitalWrite(3, LOW);
-      empty244();
-      sleep(500);
-    }
     else if (str_in == 'a') //當按下Button時，LED由左依序亮至右
     {
       digitalWrite(3, LOW);
       empty244();
-      sleep(500);
-      for (a = 0; a < 10; a++)
-      {
-        outputbyte(0xAA);
-        sleep(500);
-        outputbyte(0x55);
-        sleep(500);
-      }
       for (a = 0; a < 13; a++)
       {
         if (a == 3 | a == 10) {        //匯流排第四位有問題排除方法

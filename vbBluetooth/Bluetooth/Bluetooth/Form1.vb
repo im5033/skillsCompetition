@@ -61,7 +61,13 @@ Public Class Form1
         Timer1.Enabled = False
         Label3.Text = "Timer: OFF"
         receivedData = ReceiveSerialData() '將串行的數據傳到receivedData裡'
-        RichTextBox1.AppendText(receivedData)
+        If (receivedData.IndexOf("?") = 0) Then
+
+        ElseIf (receivedData.IndexOf("[") = 0) Then
+            LightStatus(receivedData)
+        Else
+            RichTextBox1.AppendText(receivedData)
+        End If
 
         Timer1.Enabled = True
         Label3.Text = "Timer: ON"
@@ -70,6 +76,59 @@ Public Class Form1
         End If
         textIndex = textIndex + 1
     End Sub
+    Function LightStatus(ByVal abc As String)
+        Dim light1 = Mid(abc, 6, 1)
+        Dim light2 = Mid(abc, 7, 1)
+        Dim light3 = Mid(abc, 8, 1)
+        Dim light4 = Mid(abc, 9, 1)
+        Dim light5 = Mid(abc, 10, 1)
+        Dim light6 = Mid(abc, 11, 1)
+        Dim light7 = Mid(abc, 12, 1)
+        Dim light8 = Mid(abc, 13, 1)
+        If light1 = 1 Then
+            OvalShape1.BackColor = Color.Yellow
+        Else
+            OvalShape1.BackColor = Color.Olive
+        End If
+        If light2 = 1 Then
+            OvalShape2.BackColor = Color.Yellow
+        Else
+            OvalShape2.BackColor = Color.Olive
+        End If
+        If light3 = 1 Then
+            OvalShape3.BackColor = Color.Yellow
+        Else
+            OvalShape3.BackColor = Color.Olive
+        End If
+        If light4 = 1 Then
+            OvalShape4.BackColor = Color.Yellow
+        Else
+            OvalShape4.BackColor = Color.Olive
+        End If
+        If light5 = 1 Then
+            OvalShape5.BackColor = Color.Yellow
+        Else
+            OvalShape5.BackColor = Color.Olive
+        End If
+        If light6 = 1 Then
+            OvalShape6.BackColor = Color.Yellow
+        Else
+            OvalShape6.BackColor = Color.Olive
+        End If
+        If light7 = 1 Then
+            OvalShape7.BackColor = Color.Yellow
+        Else
+            OvalShape7.BackColor = Color.Olive
+        End If
+        If light8 = 1 Then
+            OvalShape8.BackColor = Color.Yellow
+        Else
+            OvalShape8.BackColor = Color.Olive
+        End If
+
+
+    End Function
+
     Function ReceiveSerialData() As String
         Dim Incoming As String
         Try
