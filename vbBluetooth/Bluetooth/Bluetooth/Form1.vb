@@ -7,14 +7,9 @@ Public Class Form1
     Dim but2 As String
     Dim but3 As String
     Dim but4 As String
-    Dim light1 As String
-    Dim light2 As String
-    Dim light3 As String
-    Dim light4 As String
-    Dim light5 As String
-    Dim light6 As String
-    Dim light7 As String
-    Dim light8 As String
+    Dim lights() As Char = {"0"c, "0"c, "0"c, "0"c, "0"c, "0"c, "0"c, "0"c}
+    Dim lightsPic() As Microsoft.VisualBasic.PowerPacks.OvalShape = {OvalShape1, OvalShape2, OvalShape3, OvalShape4, OvalShape5, OvalShape6, OvalShape7, OvalShape8}
+    Dim lst As Char
     Dim comPORT As String          '宣告變數com端端口'
     Dim data As String              '燈的顏色'
     Dim receivedData As String  '宣告變數要接收com 上的數據'
@@ -26,6 +21,14 @@ Public Class Form1
         For Each sp As String In My.Computer.Ports.SerialPortNames
             ComboBox1.Items.Add(sp)
         Next
+        lightsPic(0) = OvalShape1
+        lightsPic(1) = OvalShape2
+        lightsPic(2) = OvalShape3
+        lightsPic(3) = OvalShape4
+        lightsPic(4) = OvalShape5
+        lightsPic(5) = OvalShape6
+        lightsPic(6) = OvalShape7
+        lightsPic(7) = OvalShape8
     End Sub
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
         If (Button1.Text = "Connect") Then                           '如果按鈕文字是"Connect"執行...
@@ -88,65 +91,22 @@ Public Class Form1
         End If
         textIndex = textIndex + 1
     End Sub
-    Function LightStatus(ByVal abc As String)
-        but1 = Mid(abc, 2, 1)
-        but2 = Mid(abc, 3, 1)
-        but3 = Mid(abc, 4, 1)
-        but4 = Mid(abc, 5, 1)
-        light1 = Mid(abc, 6, 1)
-        light2 = Mid(abc, 7, 1)
-        light3 = Mid(abc, 8, 1)
-        light4 = Mid(abc, 9, 1)
-        light5 = Mid(abc, 10, 1)
-        light6 = Mid(abc, 11, 1)
-        light7 = Mid(abc, 12, 1)
-        light8 = Mid(abc, 13, 1)
-        If but1 = 1 Then
-            Button17.BackColor = Color.Olive
-        End If
-        If light1 = 1 Then
-            OvalShape1.BackColor = Color.Yellow
-        Else
-            OvalShape1.BackColor = Color.Olive
-        End If
-        If light2 = 1 Then
-            OvalShape2.BackColor = Color.Yellow
-        Else
-            OvalShape2.BackColor = Color.Olive
-        End If
-        If light3 = 1 Then
-            OvalShape3.BackColor = Color.Yellow
-        Else
-            OvalShape3.BackColor = Color.Olive
-        End If
-        If light4 = 1 Then
-            OvalShape4.BackColor = Color.Yellow
-        Else
-            OvalShape4.BackColor = Color.Olive
-        End If
-        If light5 = 1 Then
-            OvalShape5.BackColor = Color.Yellow
-        Else
-            OvalShape5.BackColor = Color.Olive
-        End If
-        If light6 = 1 Then
-            OvalShape6.BackColor = Color.Yellow
-        Else
-            OvalShape6.BackColor = Color.Olive
-        End If
-        If light7 = 1 Then
-            OvalShape7.BackColor = Color.Yellow
-        Else
-            OvalShape7.BackColor = Color.Olive
-        End If
-        If light8 = 1 Then
-            OvalShape8.BackColor = Color.Yellow
-        Else
-            OvalShape8.BackColor = Color.Olive
-        End If
+    Private Sub LightStatus(ByVal abc As String)
 
-
-    End Function
+        For index = 6 To 13
+            lst = Mid(abc, index, 1)
+            If lights(index - 6) = lst Then
+                'do nothing
+            Else
+                lights(index - 6) = lst
+                If (lst = "1") Then
+                    lightsPic(index).BackColor = Color.Yellow
+                Else
+                    lightsPic(index).BackColor = Color.Olive
+                End If
+            End If
+        Next
+    End Sub
 
     Function ReceiveSerialData() As String
         Dim Incoming As String
