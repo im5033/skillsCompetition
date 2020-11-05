@@ -590,7 +590,7 @@ Partial Class Form1
         '
         Me.Button17.Font = New System.Drawing.Font("新細明體", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
         Me.Button17.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Button17.Location = New System.Drawing.Point(809, 328)
+        Me.Button17.Location = New System.Drawing.Point(804, 307)
         Me.Button17.Name = "Button17"
         Me.Button17.Size = New System.Drawing.Size(85, 34)
         Me.Button17.TabIndex = 53
@@ -600,7 +600,7 @@ Partial Class Form1
         'Button26
         '
         Me.Button26.Font = New System.Drawing.Font("新細明體", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
-        Me.Button26.Location = New System.Drawing.Point(941, 328)
+        Me.Button26.Location = New System.Drawing.Point(936, 307)
         Me.Button26.Name = "Button26"
         Me.Button26.Size = New System.Drawing.Size(85, 34)
         Me.Button26.TabIndex = 54
@@ -610,7 +610,7 @@ Partial Class Form1
         'Button28
         '
         Me.Button28.Font = New System.Drawing.Font("新細明體", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
-        Me.Button28.Location = New System.Drawing.Point(1073, 328)
+        Me.Button28.Location = New System.Drawing.Point(1068, 307)
         Me.Button28.Name = "Button28"
         Me.Button28.Size = New System.Drawing.Size(85, 34)
         Me.Button28.TabIndex = 55
@@ -620,7 +620,7 @@ Partial Class Form1
         'Button29
         '
         Me.Button29.Font = New System.Drawing.Font("新細明體", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
-        Me.Button29.Location = New System.Drawing.Point(1205, 328)
+        Me.Button29.Location = New System.Drawing.Point(1200, 307)
         Me.Button29.Name = "Button29"
         Me.Button29.Size = New System.Drawing.Size(85, 34)
         Me.Button29.TabIndex = 56

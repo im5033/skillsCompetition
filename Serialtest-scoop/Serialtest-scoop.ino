@@ -299,6 +299,7 @@ void setup()
   digitalWrite(A4, HIGH);
   digitalWrite(LEDpin, HIGH);
   Serial.begin(38400);//藍芽鮑率
+  Serial.setTimeout(1000);
   FastLED.addLeds<WS2812, LED_PIN, GRB>(leds, NUM_LEDS);
   jobnumber();
   mySCoop.start();
@@ -325,7 +326,7 @@ void IOProcess::loop()
   //Serial.println("Connected.");
   //val = analogRead(potpin); //將可變電阻讀到的值放到變數val
   //dt = map(val, 0, 1023, 0, 255);//將val轉換0~255給dt
-  //sleep(dt);
+  sleep(200);
   if (val1 == LOW)
   {
     Serial.print("?");
@@ -345,8 +346,8 @@ void IOProcess::loop()
     str_in_temp = Serial.read();   //把讀取到的字串放入變數裡
     //if(str_in == '@' && str_in_temp ==' ')return;
     str_in = str_in_temp;
-    Serial.print("key in chart is : ");
-    Serial.println(str_in);
+    //Serial.print("key in chart is : ");
+    //Serial.println(str_in);
     if (str_in == 't')
     {
       isTime = true;
@@ -395,17 +396,19 @@ void IOProcess::loop()
   ledStatus[11] = ledstatus(digitalRead(6));
   ledStatus[12] = ledstatus(digitalRead(7));
   ledStatus[13] = ']';
-  if (strcmp(oldledStatus, ledStatus) == 0)
+  bool isChange = !strcmp(oldledStatus, ledStatus);
+  if (isChange)
   {
 
-  } else
+  } else if(isChange == 0)
   {
+    Serial.flush();
     Serial.println(ledStatus);
     strcpy(oldledStatus, ledStatus);
   }
 
   //oldledStatus = ledStatus;
-  delay(100);
+  sleep(100);
 
 }
 char ledstatus(int dig)
@@ -614,11 +617,11 @@ void loop()
           digitalWrite(10, LOW);
           digitalWrite(11, HIGH);
           digitalWrite(12, LOW);
-          sleep(100);
+          sleep(500);
         }
         digitalWrite(11, LOW);
         outputbyte(ledf[a]);
-        sleep(100);
+        sleep(500);
       }
       digitalWrite(3, HIGH);
       empty244();
@@ -636,11 +639,11 @@ void loop()
           digitalWrite(10, LOW);
           digitalWrite(11, HIGH);
           digitalWrite(12, LOW);
-          sleep(100);
+          sleep(500);
         }
         digitalWrite(11, LOW);
         outputbyte(ledr[a]);
-        sleep(100);
+        sleep(500);
       }
       digitalWrite(3, HIGH);
       empty244();
@@ -654,7 +657,7 @@ void loop()
       for (a = 0; a < 8; a++)
       {
         digitalWrite(led2[j], HIGH);
-        sleep(100);
+        sleep(500);
         j++;
         if (j == 8)
           j = 0;
@@ -670,7 +673,7 @@ void loop()
       {
         jj = map(j, 0, 7, 7, 0);
         digitalWrite(led2[jj], HIGH);
-        sleep(100);
+        sleep(500);
         j++;
         if (j == 8)
           j = 0;

@@ -9,6 +9,7 @@ Public Class Form1
     Dim but4 As String
     Dim lights() As Char = {"0"c, "0"c, "0"c, "0"c, "0"c, "0"c, "0"c, "0"c}
     Dim lightsPic() As Microsoft.VisualBasic.PowerPacks.OvalShape = {OvalShape1, OvalShape2, OvalShape3, OvalShape4, OvalShape5, OvalShape6, OvalShape7, OvalShape8}
+
     Dim lst As Char
     Dim comPORT As String          '宣告變數com端端口'
     Dim data As String              '燈的顏色'
@@ -29,6 +30,7 @@ Public Class Form1
         lightsPic(5) = OvalShape6
         lightsPic(6) = OvalShape7
         lightsPic(7) = OvalShape8
+
     End Sub
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
         If (Button1.Text = "Connect") Then                           '如果按鈕文字是"Connect"執行...
@@ -41,7 +43,7 @@ Public Class Form1
                 SerialPort1.StopBits = StopBits.One                  '停止位元設為1
                 SerialPort1.Handshake = Handshake.None
                 SerialPort1.Encoding = System.Text.Encoding.Default '****取得作業系統編碼方式
-                SerialPort1.ReadTimeout = 10000
+                SerialPort1.ReadTimeout = 1000
                 '打開SerialPort1
                 SerialPort1.Open()
                 RichTextBox1.Text = ""
@@ -72,11 +74,14 @@ Public Class Form1
     Private Const WM_VSCROLL As Int32 = &H115
     Private Const SB_BOTTOM As Int32 = 7
     Dim textIndex As Integer = 0
+    Dim stringBegin As Boolean
+    Dim stringTemp As String
+
     Private Sub Timer1_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Timer1.Tick
         Timer1.Enabled = False
         Label3.Text = "Timer: OFF"
         receivedData = ReceiveSerialData() '將串行的數據傳到receivedData裡'
-        If (receivedData.IndexOf("?") = 0) Then
+        If (receivedData = "") Then
 
         ElseIf (receivedData.IndexOf("[") = 0) Then
             LightStatus(receivedData)
@@ -91,8 +96,11 @@ Public Class Form1
         End If
         textIndex = textIndex + 1
     End Sub
-    Private Sub LightStatus(ByVal abc As String)
-
+    Private Function LightStatus(ByVal abc As String)
+        If abc.Length <> 16 Then
+            'abc = "[" + abc
+            Return 0
+        End If
         For index = 6 To 13
             lst = Mid(abc, index, 1)
             If lights(index - 6) = lst Then
@@ -100,13 +108,15 @@ Public Class Form1
             Else
                 lights(index - 6) = lst
                 If (lst = "1") Then
-                    lightsPic(index).BackColor = Color.Yellow
+                    If (lightsPic(index - 6).IsAccessible) Then lightsPic(index - 6).BackColor = Color.Yellow
+
                 Else
-                    lightsPic(index).BackColor = Color.Olive
+                    If (lightsPic(index - 6).IsAccessible) Then lightsPic(index - 6).BackColor = Color.Olive
                 End If
             End If
         Next
-    End Sub
+        Return 0
+    End Function
 
     Function ReceiveSerialData() As String
         Dim Incoming As String
@@ -193,6 +203,7 @@ Public Class Form1
         SerialPort1.Write("@")
     End Sub
     Private Sub Timer2_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Timer2.Tick
+        'Me.Text = "Arduino Current Time:" & Format(Now(), "hh:mm:ss") '標題時間
         Label7.Text = "Current Time:" & Format(Now(), "hh:mm:ss")
         Label5.Text = "Computer Name:" & Environ$("computername")
         Dim allDrives() As System.IO.DriveInfo = System.IO.DriveInfo.GetDrives()
@@ -220,6 +231,79 @@ Public Class Form1
     End Sub
     Private Sub Button27_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button27.Click
         SerialPort1.Write("A")
+    End Sub
+
+    Private Sub OvalShape1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OvalShape1.Click
+        If OvalShape1.BackColor = Color.Yellow Then
+            OvalShape1.BackColor = Color.Olive
+        Else
+            OvalShape1.BackColor = Color.Yellow
+        End If
+    End Sub
+    Private Sub OvalShape2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OvalShape2.Click
+        If OvalShape2.BackColor = Color.Yellow Then
+            OvalShape2.BackColor = Color.Olive
+        Else
+            OvalShape2.BackColor = Color.Yellow
+        End If
+    End Sub
+    Private Sub OvalShape3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OvalShape3.Click
+        If OvalShape3.BackColor = Color.Yellow Then
+            OvalShape3.BackColor = Color.Olive
+        Else
+            OvalShape3.BackColor = Color.Yellow
+        End If
+    End Sub
+    Private Sub OvalShape4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OvalShape4.Click
+        If OvalShape4.BackColor = Color.Yellow Then
+            OvalShape4.BackColor = Color.Olive
+        Else
+            OvalShape4.BackColor = Color.Yellow
+        End If
+    End Sub
+    Private Sub OvalShape5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OvalShape5.Click
+        If OvalShape5.BackColor = Color.Yellow Then
+            OvalShape5.BackColor = Color.Olive
+        Else
+            OvalShape5.BackColor = Color.Yellow
+        End If
+    End Sub
+    Private Sub OvalShape6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OvalShape6.Click
+        If OvalShape6.BackColor = Color.Yellow Then
+            OvalShape6.BackColor = Color.Olive
+        Else
+            OvalShape6.BackColor = Color.Yellow
+        End If
+    End Sub
+    Private Sub OvalShape7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OvalShape7.Click
+        If OvalShape7.BackColor = Color.Yellow Then
+            OvalShape7.BackColor = Color.Olive
+        Else
+            OvalShape7.BackColor = Color.Yellow
+        End If
+    End Sub
+    Private Sub OvalShape8_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OvalShape8.Click
+        If OvalShape8.BackColor = Color.Yellow Then
+            OvalShape8.BackColor = Color.Olive
+        Else
+            OvalShape8.BackColor = Color.Yellow
+        End If
+    End Sub
+
+    Private Sub Button29_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button29.Click
+
+    End Sub
+
+    Private Sub Button26_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button26.Click
+
+    End Sub
+
+    Private Sub Button28_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button28.Click
+
+    End Sub
+
+    Private Sub Button17_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button17.Click
+
     End Sub
 End Class
 
