@@ -236,6 +236,7 @@ Public Class Form1
     End Sub
 
     Private Sub OvalShape1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OvalShape1.Click
+        SerialPort1.Write("m")
         If OvalShape1.BackColor = Color.Yellow Then
             OvalShape1.BackColor = Color.Olive
         Else
@@ -243,6 +244,7 @@ Public Class Form1
         End If
     End Sub
     Private Sub OvalShape2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OvalShape2.Click
+        SerialPort1.Write("n")
         If OvalShape2.BackColor = Color.Yellow Then
             OvalShape2.BackColor = Color.Olive
         Else
@@ -250,6 +252,7 @@ Public Class Form1
         End If
     End Sub
     Private Sub OvalShape3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OvalShape3.Click
+        SerialPort1.Write("b")
         If OvalShape3.BackColor = Color.Yellow Then
             OvalShape3.BackColor = Color.Olive
         Else
@@ -257,6 +260,7 @@ Public Class Form1
         End If
     End Sub
     Private Sub OvalShape4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OvalShape4.Click
+        SerialPort1.Write("v")
         If OvalShape4.BackColor = Color.Yellow Then
             OvalShape4.BackColor = Color.Olive
         Else
@@ -264,6 +268,7 @@ Public Class Form1
         End If
     End Sub
     Private Sub OvalShape5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OvalShape5.Click
+        SerialPort1.Write("l")
         If OvalShape5.BackColor = Color.Yellow Then
             OvalShape5.BackColor = Color.Olive
         Else
@@ -271,6 +276,7 @@ Public Class Form1
         End If
     End Sub
     Private Sub OvalShape6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OvalShape6.Click
+        SerialPort1.Write("k")
         If OvalShape6.BackColor = Color.Yellow Then
             OvalShape6.BackColor = Color.Olive
         Else
@@ -278,6 +284,7 @@ Public Class Form1
         End If
     End Sub
     Private Sub OvalShape7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OvalShape7.Click
+        SerialPort1.Write("j")
         If OvalShape7.BackColor = Color.Yellow Then
             OvalShape7.BackColor = Color.Olive
         Else
@@ -285,6 +292,7 @@ Public Class Form1
         End If
     End Sub
     Private Sub OvalShape8_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OvalShape8.Click
+        SerialPort1.Write("h")
         If OvalShape8.BackColor = Color.Yellow Then
             OvalShape8.BackColor = Color.Olive
         Else

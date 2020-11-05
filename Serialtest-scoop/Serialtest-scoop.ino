@@ -348,7 +348,7 @@ void IOProcess::loop()
     //if(str_in == '@' && str_in_temp ==' ')return;
     str_in = str_in_temp;
     //Serial.print("key in chart is : ");
-    //Serial.println(str_in);
+    Serial.println(str_in);
     if (str_in == 't')
     {
       isTime = true;
@@ -475,6 +475,14 @@ void timer::loop() {
   }
 
 }
+bool light1;
+bool light2;
+bool light3;
+bool light4;
+bool light5;
+bool light6;
+bool light7;
+bool light8;
 
 void loop()
 {
@@ -604,6 +612,30 @@ void loop()
     {
       t = 0;
       emptyws2812();
+    }//const int led2[] = {7, 6, 13, 12, 11, 10, 9, 8}; //針對8隻腳個別控制
+    else if (str_in == 'm') {
+      digitalWrite(8, ! digitalRead(8));
+    }
+    else if (str_in == 'n') {
+      digitalWrite(9, ! digitalRead(9));
+    }
+    else if (str_in == 'b') {
+      digitalWrite(10, ! digitalRead(10));
+    }
+    else if (str_in == 'v') {
+      digitalWrite(11, ! digitalRead(11));
+    }
+    else if (str_in == 'l') {
+      digitalWrite(12, ! digitalRead(12));
+    }
+    else if (str_in == 'k') {
+      digitalWrite(13, ! digitalRead(13));
+    }
+    else if (str_in == 'j') {
+      digitalWrite(6, ! digitalRead(6));
+    }
+    else if (str_in == 'h') {
+      digitalWrite(7, ! digitalRead(7));
     }
     else if (str_in == '9')   //當按下Button時，LED全亮全滅
     {
