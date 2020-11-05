@@ -265,7 +265,7 @@ void jobnumber() {
   int dis = 0;
   digitalWrite(3, HIGH); //設高電位關閉74LS244
   digitalWrite(A4, LOW); //設低電位於74LS273
-  sleep(dt);
+  sleep(10);
   do {
     job -= 10;
     t += 1;
@@ -311,8 +311,8 @@ void IOProcess::setup()
 }
 char str_in_temp;
 char tt;
-int times;
-int ppp = 0;
+int times = 0;
+int ggg = 0;
 char oldledStatus [] = "1234567800qwer";
 char ledStatus[] = "1234567890qwer";
 
@@ -331,6 +331,7 @@ void IOProcess::loop()
   {
     Serial.print("?");
     jobnumber();
+    ggg = 0;
   } else if (val2 == LOW)
   {
     Serial.println("Button 2");
@@ -368,8 +369,8 @@ void IOProcess::loop()
         tTemps = tTemps + atoi(&str_in);
         tIndex++;
         times = tTemps;
-        Serial.println(tTemps);
-        ppp = 1;
+        Serial.println(times);
+        ggg = 1;
         tIndex = 0;
         tTemps = 0;
         return;
@@ -400,10 +401,10 @@ void IOProcess::loop()
   if (isChange)
   {
 
-  } else if(isChange == 0)
+  } else if (isChange == 0)
   {
     Serial.flush();
-    Serial.println(ledStatus);
+    //Serial.println(ledStatus);
     strcpy(oldledStatus, ledStatus);
   }
 
@@ -433,34 +434,46 @@ char buttonstatus(int dig)
   }
 
 }
+int tr = 0;
+int v = 0;
+int disr = 0;
+
 void timer::setup() {
 
 }
 
 
 void timer::loop() {
-  int t1 = 0;
-  int dis1 = 0;
-  int abc = 0;
-  abc = times;
-  if (ppp == 1) {
+  if (ggg == 1) {
+    v = times;
     digitalWrite(3, HIGH); //設高電位關閉74LS244
     digitalWrite(A4, LOW); //設低電位於74LS273
-    do {
-      times -= 10;
-      t1 += 1;
+    if (v > 10) {
+      do {
+        v -= 10;
+        tr += 1;
+      }
+      while (v > 10);
     }
-    while (times > 10);
-    dis1 = t1 * 16 + times;
-    //Serial.println(dis1);
-    //outputbyte(dis1);
+    disr = tr * 16 + v;
+    if (v == 10 | v == 20 | v == 30 |
+        v == 40 | v == 50 | v == 60 )
+    {
+      disr = disr + 6;
+    }
+    //Serial.println(disr);
+    outputbyte(disr);
     digitalWrite(3, HIGH); //設高電位關閉74LS244
     digitalWrite(A4, HIGH); //74LS273輸出資料，正緣觸發
+    v = 0;
+    tr = 0;
+    times ++;
+    sleep(1000);
   }
-  t1 = 0;
-  dis1 = 0;
-  times++;
-  sleep(1000);
+  if (times == 60) {
+    times = 0;
+  }
+
 }
 
 void loop()
@@ -474,7 +487,8 @@ void loop()
     {
       emptyws2812();
       empty7seg();
-      ppp = 0;
+      ggg = 0;
+
     }
     else if (str_in == '@')
     {

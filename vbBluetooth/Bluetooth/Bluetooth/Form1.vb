@@ -53,6 +53,7 @@ Public Class Form1
                 Label3.Text = "Timer: ON"
                 OvalShape9.BackColor = Color.Green
                 LED()
+                SerialPort1.Write("t" & Format(Now(), "ss"))
             Else
                 MsgBox("Select a COM port first")                   '顯示訊息要連結com點
             End If
@@ -99,7 +100,6 @@ Public Class Form1
     Private Function LightStatus(ByVal abc As String)
         If abc.Length <> 16 Then
             'abc = "[" + abc
-            Return 0
         End If
         For index = 6 To 13
             lst = Mid(abc, index, 1)
@@ -128,7 +128,9 @@ Public Class Form1
                 Return Incoming
             End If
         Catch ex As Exception
-            Return "Error: Serial Port  read timed out."
+            MsgBox("disconnect")
+            Return 0
+            'Return "Error: Serial Port  read timed out."
         End Try
     End Function
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
@@ -304,6 +306,10 @@ Public Class Form1
 
     Private Sub Button17_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button17.Click
 
+    End Sub
+
+    Private Sub Button30_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button30.Click
+        SerialPort1.Write("t" & Format(Now(), "ss"))
     End Sub
 End Class
 
