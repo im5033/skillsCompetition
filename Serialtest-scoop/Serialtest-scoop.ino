@@ -173,13 +173,13 @@ void ws2812() {//ws2812各顆亮燈函數
     FastLED.show();
   }
 }
-
+int job = 0;
 void jobnumber() {
   empty7seg();
-  int job = 26;              //在這裡設定崗位號碼
+  job = 26;              //在這裡設定崗位號碼
   int t = 0;
   int dis = 0;
-  //job = EEPROM.read(passwd);   //密碼功能
+  job = EEPROM.read(passwd);   //密碼功能
   digitalWrite(3, HIGH); //設高電位關閉74LS244
   digitalWrite(A4, LOW); //設低電位於74LS273
   sleep(10);
@@ -234,8 +234,8 @@ void IOProcess::setup()
 char str_in_temp;
 char tt;
 int ggg = 0;
-char oldledStatus [] = "1234567800qwer";
-char ledStatus[] = "1234567890qwer";
+char oldledStatus [] = "1234567800qwerd";
+char ledStatus[] = "1234567890qwerx";
 
 void IOProcess::loop()
 {
@@ -314,7 +314,7 @@ void IOProcess::loop()
         isTime = false;
         tTemps = tTemps + atoi(&str_in);
         tIndex++;
-        times = tTemps;
+        times = tTemps + 1;
         Serial.println(times);
         ggg = 1;
         tIndex = 0;
@@ -342,7 +342,8 @@ void IOProcess::loop()
   ledStatus[10] = ledstatus(digitalRead(13));
   ledStatus[11] = ledstatus(digitalRead(6));
   ledStatus[12] = ledstatus(digitalRead(7));
-  ledStatus[13] = ']';
+  ledStatus[13] = ledstatus(digitalRead(3));
+  ledStatus[14] = ']';
   bool isChange = !strcmp(oldledStatus, ledStatus);
   if (isChange)
   {
@@ -350,7 +351,7 @@ void IOProcess::loop()
   } else if (isChange == 0)
   {
     Serial.flush();
-    //Serial.println(ledStatus);
+    Serial.println(ledStatus);
     strcpy(oldledStatus, ledStatus);
   }
 
@@ -390,10 +391,10 @@ void timer::setup() {
 
 
 void timer::loop() {
-  if(millis() > time_now + 600){
-        time_now = millis();
-        Serial.print("Hello");
-    }
+  if (millis() > time_now + 600) {
+    time_now = millis();
+    Serial.print("Hello");
+  }
   if (ggg == 1) {
     v = times;
     digitalWrite(3, HIGH); //設高電位關閉74LS244
@@ -446,6 +447,7 @@ void loop()
       emptyws2812();
       empty7seg();
       ggg = 0;
+      EEPROM.write(passwd, 26);
 
     }
     else if (str_in == '@')
