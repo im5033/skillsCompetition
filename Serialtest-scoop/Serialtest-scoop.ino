@@ -46,6 +46,7 @@ int val1 = 0;   //存放按鈕讀取的變數
 int val2 = 0;
 int val3 = 0;
 int val4 = 0;
+unsigned long time_now = 0;
 int times = 0;
 int passwd = 0;
 void outputbyte(uchar b)  //針對匯流排一次輸出
@@ -175,7 +176,7 @@ void ws2812() {//ws2812各顆亮燈函數
 
 void jobnumber() {
   empty7seg();
-  int job = 0;              //在這裡設定崗位號碼
+  int job = 26;              //在這裡設定崗位號碼
   int t = 0;
   int dis = 0;
   //job = EEPROM.read(passwd);   //密碼功能
@@ -243,7 +244,6 @@ void IOProcess::loop()
   val2 = digitalRead(inPin2);
   val3 = digitalRead(inPin3);
   val4 = digitalRead(inPin4);
-  //Serial.println("Connected.");
   //val = analogRead(potpin); //將可變電阻讀到的值放到變數val
   //dt = map(val, 0, 1023, 0, 255);//將val轉換0~255給dt
   sleep(200);
@@ -390,6 +390,10 @@ void timer::setup() {
 
 
 void timer::loop() {
+  if(millis() > time_now + 600){
+        time_now = millis();
+        Serial.print("Hello");
+    }
   if (ggg == 1) {
     v = times;
     digitalWrite(3, HIGH); //設高電位關閉74LS244

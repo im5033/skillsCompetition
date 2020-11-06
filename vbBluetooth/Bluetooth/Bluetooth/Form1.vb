@@ -82,8 +82,8 @@ Public Class Form1
         Timer1.Enabled = False
         Label3.Text = "Timer: OFF"
         receivedData = ReceiveSerialData() '將串行的數據傳到receivedData裡'
-        If (receivedData = "") Then
-
+        If (receivedData.IndexOf("Hello") = 0) Then
+            RichTextBox1.AppendText("")
         ElseIf (receivedData.IndexOf("[") = 0) Then
             LightStatus(receivedData)
         Else
@@ -117,7 +117,7 @@ Public Class Form1
         Next
         Return 0
     End Function
-
+    Dim lastUpdateTime As Long = 999999999999999999
     Function ReceiveSerialData() As String
         Dim Incoming As String
         Try
@@ -125,11 +125,28 @@ Public Class Form1
             If Incoming Is Nothing Then
                 Return "nothing" & vbCrLf
             Else
+                If Incoming = "" Then
+                    If (Now().Ticks - lastUpdateTime) > 20000000 Then
+                        MsgBox("已斷線請重新連線")
+                        Timer1.Enabled = False
+                        SerialPort1.Close()                                     '關閉Serial
+                        Button1.Text = "Connect"                                '改變文字為Connect
+                        ComboBox1.Enabled = True                                '重新選擇comPORT
+                        OvalShape9.BackColor = Color.Red
+                        Label3.Text = "Timer: OFF"
+                        ComboBox1.Text = String.Empty                           'ComboBox顯示為空
+                        RichTextBox1.Text = ""                                  '將文本框的數據清除掉'
+                        lastUpdateTime = 999999999999999999 '怕他一直跳msgbox
+                        Return ""
+                    End If
+                Else
+                    lastUpdateTime = Now().Ticks
+                End If
+
                 Return Incoming
             End If
         Catch ex As Exception
-            MsgBox("disconnect")
-            Return 0
+            Return ""
             'Return "Error: Serial Port  read timed out."
         End Try
     End Function
