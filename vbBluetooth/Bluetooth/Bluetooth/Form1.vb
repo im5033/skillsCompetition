@@ -98,11 +98,11 @@ Public Class Form1
         textIndex = textIndex + 1
     End Sub
     Private Function LightStatus(ByVal abc As String)
-        If abc.Length <> 16 Then
-            'abc = "[" + abc
-        End If
         For index = 6 To 13
             lst = Mid(abc, index, 1)
+            'If Mid(abc, 14, 1) = 1 Then
+            'lightsPic(index - 6).BackColor = Color.Olive
+            'Else
             If lights(index - 6) = lst Then
                 'do nothing
             Else
@@ -114,11 +114,13 @@ Public Class Form1
                     If (lightsPic(index - 6).IsAccessible) Then lightsPic(index - 6).BackColor = Color.Olive
                 End If
             End If
+            'End If
         Next
         Return 0
     End Function
     Dim lastUpdateTime As Long = 999999999999999999
     Function ReceiveSerialData() As String
+
         Dim Incoming As String
         Try
             Incoming = SerialPort1.ReadExisting()
@@ -128,13 +130,7 @@ Public Class Form1
                 If Incoming = "" Then
                     If (Now().Ticks - lastUpdateTime) > 20000000 Then
                         MsgBox("已斷線請重新連線")
-                        Timer1.Enabled = False
-                        SerialPort1.Close()                                     '關閉Serial
-                        Button1.Text = "Connect"                                '改變文字為Connect
-                        ComboBox1.Enabled = True                                '重新選擇comPORT
                         OvalShape9.BackColor = Color.Red
-                        Label3.Text = "Timer: OFF"
-                        ComboBox1.Text = String.Empty                           'ComboBox顯示為空
                         RichTextBox1.Text = ""                                  '將文本框的數據清除掉'
                         lastUpdateTime = 999999999999999999 '怕他一直跳msgbox
                         Return ""
@@ -335,6 +331,17 @@ Public Class Form1
 
     Private Sub Button30_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button30.Click
         SerialPort1.Write("t" & Format(Now(), "ss"))
+    End Sub
+
+    Private Sub Button31_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button31.Click
+        Dim m = TextBox2.Text
+        If m Mod 2 = 1 Then
+            SerialPort1.Write("+") '奇數
+            Label9.Text = "奇數"
+        Else
+            SerialPort1.Write("-") '偶數
+            Label9.Text = "偶數"
+        End If
     End Sub
 End Class
 

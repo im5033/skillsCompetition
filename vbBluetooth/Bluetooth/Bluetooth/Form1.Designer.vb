@@ -79,6 +79,9 @@ Partial Class Form1
         Me.Button28 = New System.Windows.Forms.Button()
         Me.Button29 = New System.Windows.Forms.Button()
         Me.Button30 = New System.Windows.Forms.Button()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.Button31 = New System.Windows.Forms.Button()
+        Me.Label9 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'Button1
@@ -637,11 +640,44 @@ Partial Class Form1
         Me.Button30.Text = "Button30"
         Me.Button30.UseVisualStyleBackColor = True
         '
+        'TextBox2
+        '
+        Me.TextBox2.Font = New System.Drawing.Font("新細明體", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
+        Me.TextBox2.Location = New System.Drawing.Point(890, 417)
+        Me.TextBox2.Margin = New System.Windows.Forms.Padding(2)
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.Size = New System.Drawing.Size(141, 30)
+        Me.TextBox2.TabIndex = 58
+        '
+        'Button31
+        '
+        Me.Button31.Font = New System.Drawing.Font("新細明體", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
+        Me.Button31.Location = New System.Drawing.Point(1051, 414)
+        Me.Button31.Margin = New System.Windows.Forms.Padding(2)
+        Me.Button31.Name = "Button31"
+        Me.Button31.Size = New System.Drawing.Size(68, 30)
+        Me.Button31.TabIndex = 59
+        Me.Button31.Text = "判斷"
+        Me.Button31.UseVisualStyleBackColor = True
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Font = New System.Drawing.Font("新細明體", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(136, Byte))
+        Me.Label9.Location = New System.Drawing.Point(806, 421)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(76, 16)
+        Me.Label9.TabIndex = 60
+        Me.Label9.Text = "奇偶判斷"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1381, 566)
+        Me.Controls.Add(Me.Label9)
+        Me.Controls.Add(Me.Button31)
+        Me.Controls.Add(Me.TextBox2)
         Me.Controls.Add(Me.Button30)
         Me.Controls.Add(Me.Button29)
         Me.Controls.Add(Me.Button28)
@@ -749,5 +785,8 @@ Partial Class Form1
     Friend WithEvents Button28 As System.Windows.Forms.Button
     Friend WithEvents Button29 As System.Windows.Forms.Button
     Friend WithEvents Button30 As System.Windows.Forms.Button
+    Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
+    Friend WithEvents Button31 As System.Windows.Forms.Button
+    Friend WithEvents Label9 As System.Windows.Forms.Label
 
 End Class

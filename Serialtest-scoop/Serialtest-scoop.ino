@@ -453,12 +453,22 @@ void loop()
     else if (str_in == '@')
     {
       Breathe_LED();
-    } else if (str_in == '#')
+    }
+    else if (str_in == '+') //奇數
     {
+      digitalWrite(3, HIGH); //設高電位關閉74LS244
+      digitalWrite(A4, LOW); //設低電位於74LS273
+      outputbyte(128);
+      digitalWrite(A4, HIGH); //74LS273輸出資料，正緣觸發
+      digitalWrite(3, HIGH);
 
-    } else if (str_in == '$')
+    } else if (str_in == '-') //偶數
     {
-
+      digitalWrite(3, HIGH); //設高電位關閉74LS244
+      digitalWrite(A4, LOW); //設低電位於74LS273
+      outputbyte(0);
+      digitalWrite(A4, HIGH); //74LS273輸出資料，正緣觸發
+      digitalWrite(3, HIGH);
     }
     else if (str_in == '1')
     {
