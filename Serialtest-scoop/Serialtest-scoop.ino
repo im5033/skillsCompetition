@@ -1,3 +1,4 @@
+#include <EEPROM.h>
 #include <FastLED.h>  //ws2812函式庫
 #include <avr/io.h>
 #include <avr/wdt.h>
@@ -45,7 +46,8 @@ int val1 = 0;   //存放按鈕讀取的變數
 int val2 = 0;
 int val3 = 0;
 int val4 = 0;
-
+int times = 0;
+int passwd = 0;
 void outputbyte(uchar b)  //針對匯流排一次輸出
 {
   PORTB = (PORTB & ~0x3f) | (b & 0x3f);
@@ -71,6 +73,13 @@ void emptyws2812() {
   bcr = 0;
   bcg = 0;
   bcb = 0;
+}
+void empty7seg() {
+  a = 0;
+  i = 0;
+  digitalWrite(A4, LOW);
+  outputbyte(0);
+  digitalWrite(A4, HIGH);
 }
 /*
   void Breathe_LED() {
@@ -124,94 +133,6 @@ void Breathe_LED()
   bright += increment;
 
 }
-
-void mod2() {
-  for ( i = 0; i < 8; i++)
-  {
-    if (R > 128)R = 0;
-    if (G > 255)G = 0;
-    if (B > 64)B = 0;
-    R = R + 10;
-    G = G + 20;
-    B = B + 35;
-    leds[i] = CRGB(G, R, B);
-    FastLED.show();
-    sleep(100);
-    FastLED.clear();
-  }
-}
-void mod3()//呼吸燈一次
-{
-  /*bcrd = 10;
-    bcgd = 10;
-    bcbd = 10;
-    if (str_in == '0') {
-    emptyws2812();
-    }
-    else if (bcr != 255 | bcr != 0) {
-    bcrd = bcr /= 25;
-    }
-    else if (bcr != 255 | bcr != 0) {
-    bcgd = bcg /= 25;
-    }
-    else if (bcr != 255 | bcr != 0) {
-    bcbd = bcb /= 25;
-    }*/
-  do {
-    for (int i = 0; i < 26; i++)
-    {
-      /* 紅燈漸亮*/
-      R += 10;
-      if (R > bcr)R = bcr;
-      G += 10;
-      if (G > bcg)G = bcg;
-      B += 10;
-      if (B > bcb)B = bcb;
-      for (int j = 0; j < 8; j++)
-        leds[j] = CRGB(R, G, B);
-      FastLED.show();
-      val = analogRead(potpin);
-      dt = map(val, 0, 1023, 0, 25);
-      sleep(dt);
-    }
-    for (int i = 0; i < 26; i++)
-    {
-      /* 紅燈漸暗*/
-      R -= 10;
-      if (R < 0)R = 0;
-      G -= 10;
-      if (G < 0)G = 0;
-      B -= 10;
-      if (B < 0)B = 0;
-      for (int j = 0; j < 8; j++)
-        leds[j] = CRGB(R, G, B);
-      FastLED.show();
-      val = analogRead(potpin);
-      dt = map(val, 0, 1023, 0, 25);
-      sleep(dt);
-    }
-    FastLED.clear();
-  }
-  while (str_in != '0');
-}
-void mod4()//逐次亮，逐次滅
-{
-  for (int i = 0; i < 8; i++)
-  {
-    leds[i] = CRGB(rand() % 80, rand() % 200, rand() % 80);
-    FastLED.show();
-    sleep(500);
-    FastLED.clear();
-  }
-
-  for (int j = 0; j < 8; j++)
-  {
-    leds[j] = CRGB(0, 0, 0);
-    FastLED.show();
-    sleep(500);
-    FastLED.clear();
-  }
-}
 void ws2812() {//ws2812各顆亮燈函數
   while (t == 0) {
     emptyws2812();
@@ -251,18 +172,13 @@ void ws2812() {//ws2812各顆亮燈函數
     FastLED.show();
   }
 }
-void empty7seg() {
-  a = 0;
-  i = 0;
-  digitalWrite(A4, LOW);
-  outputbyte(0);
-  digitalWrite(A4, HIGH);
-}
+
 void jobnumber() {
   empty7seg();
-  int job = 26;              //在這裡設定崗位號碼
+  int job = 0;              //在這裡設定崗位號碼
   int t = 0;
   int dis = 0;
+  //job = EEPROM.read(passwd);   //密碼功能
   digitalWrite(3, HIGH); //設高電位關閉74LS244
   digitalWrite(A4, LOW); //設低電位於74LS273
   sleep(10);
@@ -272,6 +188,7 @@ void jobnumber() {
   }
   while (job > 10);
   dis = t * 16 + job;
+  Serial.println(dis);
   outputbyte(dis);
   digitalWrite(3, HIGH); //設高電位關閉74LS244
   digitalWrite(A4, HIGH); //74LS273輸出資料，正緣觸發
@@ -280,6 +197,9 @@ void jobnumber() {
 bool isTime;
 int tIndex;
 int tTemps;
+bool isPwd;
+int pIndex;
+int pTemps;
 void setup()
 {
   pinMode(LEDpin, OUTPUT);
@@ -304,6 +224,7 @@ void setup()
   jobnumber();
   mySCoop.start();
   isTime = false;
+  isPwd = false;
 }
 void IOProcess::setup()
 {
@@ -311,7 +232,6 @@ void IOProcess::setup()
 }
 char str_in_temp;
 char tt;
-int times = 0;
 int ggg = 0;
 char oldledStatus [] = "1234567800qwer";
 char ledStatus[] = "1234567890qwer";
@@ -349,11 +269,37 @@ void IOProcess::loop()
     str_in = str_in_temp;
     //Serial.print("key in chart is : ");
     Serial.println(str_in);
+    if (str_in == 'p')
+    {
+      isPwd = true;
+      return;
+    }
     if (str_in == 't')
     {
       isTime = true;
       times = 0;
       return;
+    }
+    if (isPwd  == true)
+    {
+      if (pIndex == 0)
+      {
+        pTemps = atoi(&str_in) * 10;
+        pIndex++;
+        return;
+      }
+      if (pIndex == 1)
+      {
+        isPwd = false;
+        pTemps = pTemps + atoi(&str_in);
+        pIndex++;
+        EEPROM.write(passwd, pTemps);
+        Serial.println(passwd);
+        pIndex = 0;
+        pTemps = 0;
+        return;
+      }
+      pIndex++;
     }
     if (isTime == true)
     {
@@ -503,10 +449,10 @@ void loop()
       Breathe_LED();
     } else if (str_in == '#')
     {
-      mod3();
+
     } else if (str_in == '$')
     {
-      mod4();
+
     }
     else if (str_in == '1')
     {
