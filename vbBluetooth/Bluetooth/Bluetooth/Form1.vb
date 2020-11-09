@@ -82,13 +82,17 @@ Public Class Form1
         Timer1.Enabled = False
         Label3.Text = "Timer: OFF"
         receivedData = ReceiveSerialData() '將串行的數據傳到receivedData裡'
-        If (receivedData.IndexOf("Hello") = 0) Then
-            RichTextBox1.AppendText("")
-        ElseIf (receivedData.IndexOf("[") = 0) Then
-            LightStatus(receivedData)
-        Else
-            RichTextBox1.AppendText(receivedData)
+        If (receivedData = "[") Then
+            stringBegin = True
+            stringTemp = "["
+        ElseIf (receivedData = "]") Then
+            stringBegin = False
+            stringTemp += "]"
+            LightStatus(stringTemp)
+        ElseIf (stringBegin) Then
+            stringTemp += receivedData
         End If
+        RichTextBox1.AppendText(receivedData(0))
 
         Timer1.Enabled = True
         Label3.Text = "Timer: ON"
@@ -119,30 +123,30 @@ Public Class Form1
         Return 0
     End Function
     Dim lastUpdateTime As Long = 999999999999999999
+
+    Dim Incoming() As Byte = New Byte(1) {}
     Function ReceiveSerialData() As String
 
-        Dim Incoming As String
-        Try
-            Incoming = SerialPort1.ReadExisting()
-            If Incoming Is Nothing Then
-                Return "nothing" & vbCrLf
-            Else
-                If Incoming = "" Then
-                    If (Now().Ticks - lastUpdateTime) > 20000000 Then
-                        MsgBox("已斷線請重新連線")
-                        OvalShape9.BackColor = Color.Red
-                        RichTextBox1.Text = ""                                  '將文本框的數據清除掉'
-                        lastUpdateTime = 999999999999999999 '怕他一直跳msgbox
-                        Return ""
-                    End If
-                Else
-                    lastUpdateTime = Now().Ticks
-                End If
 
-                Return Incoming
+        Try
+            SerialPort1.Read(Incoming, 0, 1)
+            If IsDBNull(Incoming) Then
+                ' Return "nothing" & vbCrLf
+                Return 0
+            Else
+                lastUpdateTime = Now().Ticks
+                Return System.Text.Encoding.UTF8.GetString(Incoming).Chars(0)
             End If
         Catch ex As Exception
-            Return ""
+            If (Now().Ticks - lastUpdateTime) > 20000000 Then
+                MsgBox("已斷線請重新連線")
+                OvalShape9.BackColor = Color.Red
+                RichTextBox1.Text = ""                                  '將文本框的數據清除掉'
+                lastUpdateTime = 999999999999999999 '怕他一直跳msgbox
+                'Return ""
+            End If
+            Return 0
+            'Return System.Text.Encoding.UTF8.GetString(Incoming).Chars(0)
             'Return "Error: Serial Port  read timed out."
         End Try
     End Function

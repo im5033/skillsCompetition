@@ -119,6 +119,7 @@ Partial Class Form1
         '
         'Timer1
         '
+        Me.Timer1.Interval = 1
         '
         'RichTextBox1
         '
@@ -493,7 +494,7 @@ Partial Class Form1
         Me.ShapeContainer1.Margin = New System.Windows.Forms.Padding(0)
         Me.ShapeContainer1.Name = "ShapeContainer1"
         Me.ShapeContainer1.Shapes.AddRange(New Microsoft.VisualBasic.PowerPacks.Shape() {Me.OvalShape9, Me.OvalShape8, Me.OvalShape7, Me.OvalShape6, Me.OvalShape5, Me.OvalShape4, Me.OvalShape3, Me.OvalShape2, Me.OvalShape1})
-        Me.ShapeContainer1.Size = New System.Drawing.Size(1381, 566)
+        Me.ShapeContainer1.Size = New System.Drawing.Size(1370, 566)
         Me.ShapeContainer1.TabIndex = 48
         Me.ShapeContainer1.TabStop = False
         '
@@ -674,7 +675,7 @@ Partial Class Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1381, 566)
+        Me.ClientSize = New System.Drawing.Size(1370, 566)
         Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.Button31)
         Me.Controls.Add(Me.TextBox2)
