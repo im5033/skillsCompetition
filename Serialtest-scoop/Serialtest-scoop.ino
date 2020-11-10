@@ -246,7 +246,11 @@ void IOProcess::loop()
   val4 = digitalRead(inPin4);
   //val = analogRead(potpin); //將可變電阻讀到的值放到變數val
   //dt = map(val, 0, 1023, 0, 255);//將val轉換0~255給dt
+<<<<<<< HEAD
   // sleep(200);
+=======
+ // sleep(200);
+>>>>>>> 7d93e5812465f88db183e30b9f1343b71fa6a714
   if (val1 == LOW)
   {
     Serial.print("?");
