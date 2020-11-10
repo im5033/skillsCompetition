@@ -246,7 +246,7 @@ void IOProcess::loop()
   val4 = digitalRead(inPin4);
   //val = analogRead(potpin); //將可變電阻讀到的值放到變數val
   //dt = map(val, 0, 1023, 0, 255);//將val轉換0~255給dt
-  sleep(200);
+ // sleep(200);
   if (val1 == LOW)
   {
     Serial.print("?");
@@ -356,7 +356,7 @@ void IOProcess::loop()
   }
 
   //oldledStatus = ledStatus;
-  sleep(100);
+  //sleep(100);
 
 }
 char ledstatus(int dig)
@@ -391,9 +391,9 @@ void timer::setup() {
 
 
 void timer::loop() {
-  if (millis() > time_now + 600) {
+  if (millis() > (time_now + 1000)) {
     time_now = millis();
-    Serial.print("Hello");
+    Serial.print("H");
   }
   if (ggg == 1) {
     v = times;
