@@ -34,3 +34,12 @@ C:\skillsCompetition\vbBluetooth\Bluetooth\Bluetooth\obj\x86\Debug\Bluetooth.vbp
 C:\skillsCompetition\vbBluetooth\Bluetooth\Bluetooth\bin\Debug\Bluetooth.exe
 C:\skillsCompetition\vbBluetooth\Bluetooth\Bluetooth\bin\Debug\Bluetooth.pdb
 C:\skillsCompetition\vbBluetooth\Bluetooth\Bluetooth\bin\Debug\Bluetooth.xml
+C:\Users\ssoon\Desktop\Bluetooth\Bluetooth\obj\x86\Debug\Bluetooth.exe
+C:\Users\ssoon\Desktop\Bluetooth\Bluetooth\obj\x86\Debug\Bluetooth.xml
+C:\Users\ssoon\Desktop\Bluetooth\Bluetooth\obj\x86\Debug\Bluetooth.pdb
+C:\Users\ssoon\Desktop\Bluetooth\Bluetooth\bin\Debug\Bluetooth.exe
+C:\Users\ssoon\Desktop\Bluetooth\Bluetooth\bin\Debug\Bluetooth.pdb
+C:\Users\ssoon\Desktop\Bluetooth\Bluetooth\bin\Debug\Bluetooth.xml
+C:\Users\ssoon\Desktop\Bluetooth\Bluetooth\obj\x86\Debug\Bluetooth.Form1.resources
+C:\Users\ssoon\Desktop\Bluetooth\Bluetooth\obj\x86\Debug\Bluetooth.Resources.resources
+C:\Users\ssoon\Desktop\Bluetooth\Bluetooth\obj\x86\Debug\Bluetooth.vbproj.GenerateResource.Cache
