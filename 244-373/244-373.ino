@@ -78,9 +78,9 @@ void emptyws2812() {
 void empty7seg() {
   a = 0;
   i = 0;
-  digitalWrite(A4, LOW);
-  outputbyte(0);
   digitalWrite(A4, HIGH);
+  outputbyte(0);
+  digitalWrite(A4, LOW);
 }
 /*
   void Breathe_LED() {
@@ -181,7 +181,7 @@ void jobnumber() {
   int dis = 0;
   job = EEPROM.read(passwd);   //密碼功能
   digitalWrite(3, HIGH); //設高電位關閉74LS244
-  digitalWrite(A4, LOW); //設低電位於74LS273
+  digitalWrite(A4, HIGH); //設低電位於74LS273
   sleep(10);
   do {
     job -= 10;
@@ -192,7 +192,7 @@ void jobnumber() {
   Serial.println(dis);
   outputbyte(dis);
   digitalWrite(3, HIGH); //設高電位關閉74LS244
-  digitalWrite(A4, HIGH); //74LS273輸出資料，正緣觸發
+  digitalWrite(A4, LOW); //74LS273輸出資料，正緣觸發
 
 }
 bool isTime;
@@ -217,7 +217,7 @@ void setup()
   pinMode(3, OUTPUT); //設控制74LS244的控制角為發送
   digitalWrite(3, HIGH);
   pinMode(A4, OUTPUT); //設控制74LS273的控制角為發送
-  digitalWrite(A4, HIGH);
+  digitalWrite(A4, LOW);
   digitalWrite(LEDpin, HIGH);
   Serial.begin(38400);//藍芽鮑率
   Serial.setTimeout(1000);
@@ -244,13 +244,6 @@ void IOProcess::loop()
   val2 = digitalRead(inPin2);
   val3 = digitalRead(inPin3);
   val4 = digitalRead(inPin4);
-  //val = analogRead(potpin); //將可變電阻讀到的值放到變數val
-  //dt = map(val, 0, 1023, 0, 255);//將val轉換0~255給dt
-<<<<<<< HEAD
-  // sleep(200);
-=======
- // sleep(200);
->>>>>>> 7d93e5812465f88db183e30b9f1343b71fa6a714
   if (val1 == LOW)
   {
     Serial.print("?");
@@ -402,7 +395,7 @@ void timer::loop() {
   if (ggg == 1) {
     v = times;
     digitalWrite(3, HIGH); //設高電位關閉74LS244
-    digitalWrite(A4, LOW); //設低電位於74LS273
+    digitalWrite(A4, HIGH); //設低電位於74LS273
     if (v > 10) {
       do {
         v -= 10;
@@ -419,7 +412,7 @@ void timer::loop() {
     //Serial.println(disr);
     outputbyte(disr);
     digitalWrite(3, HIGH); //設高電位關閉74LS244
-    digitalWrite(A4, HIGH); //74LS273輸出資料，正緣觸發
+    digitalWrite(A4, LOW); //74LS273輸出資料，正緣觸發
     v = 0;
     tr = 0;
     times ++;
@@ -461,17 +454,17 @@ void loop()
     else if (str_in == '+') //奇數
     {
       digitalWrite(3, HIGH); //設高電位關閉74LS244
-      digitalWrite(A4, LOW); //設低電位於74LS273
+      digitalWrite(A4, HIGH); //設低電位於74LS273
       outputbyte(128);
-      digitalWrite(A4, HIGH); //74LS273輸出資料，正緣觸發
+      digitalWrite(A4, LOW); //74LS273輸出資料，正緣觸發
       digitalWrite(3, HIGH);
 
     } else if (str_in == '-') //偶數
     {
       digitalWrite(3, HIGH); //設高電位關閉74LS244
-      digitalWrite(A4, LOW); //設低電位於74LS273
+      digitalWrite(A4, HIGH); //設低電位於74LS273
       outputbyte(0);
-      digitalWrite(A4, HIGH); //74LS273輸出資料，正緣觸發
+      digitalWrite(A4, LOW); //74LS273輸出資料，正緣觸發
       digitalWrite(3, HIGH);
     }
     else if (str_in == '1')
@@ -699,7 +692,7 @@ void loop()
       for (a = 0; a < 100; a++)
       {
         digitalWrite(3, HIGH); //設高電位關閉74LS244
-        digitalWrite(A4, LOW); //設低電位於74LS273
+        digitalWrite(A4, HIGH); //設低電位於74LS273
         sleep(dt);
         if (a == 10 | a == 20 | a == 30 |
             a == 40 | a == 50 | a == 60 |
@@ -708,23 +701,23 @@ void loop()
         val = analogRead(potpin);
         dt = map(val, 0, 1023, 0, 255);
         outputbyte(i);
-        digitalWrite(A4, HIGH); //74LS273輸出資料，正緣觸發
+        digitalWrite(A4, LOW); //74LS273輸出資料，正緣觸發
         digitalWrite(3, HIGH); //設高電位關閉74LS244
         sleep(dt);
         i++;
       }
       a = 0;
       i = 0;
-      digitalWrite(A4, LOW);
-      outputbyte(0);
       digitalWrite(A4, HIGH);
+      outputbyte(0);
+      digitalWrite(A4, LOW);
     }
     else if (str_in == 'd')   //當按下Button時，七段顯示器顯示99~0，期間可變電阻可改變轉換速率
     {
       empty7seg();
       for (a = 0; a < 100; a++) {
         digitalWrite(3, HIGH); //設高電位關閉74LS244
-        digitalWrite(A4, LOW); //設低電位於74LS273
+        digitalWrite(A4, HIGH); //設低電位於74LS273
         sleep(dt);
         if (a == 10 | a == 20 | a == 30 |
             a == 40 | a == 50 | a == 60 |
@@ -735,15 +728,15 @@ void loop()
         aa = map(i, 0, 153, 153, 0);
         outputbyte(aa);
         digitalWrite(3, HIGH); //設高電位關閉74LS244
-        digitalWrite(A4, HIGH); //74LS273輸出資料，正緣觸發
+        digitalWrite(A4, LOW); //74LS273輸出資料，正緣觸發
         sleep(dt);
         i++;
       }
       a = 0;
       i = 0;
-      digitalWrite(A4, LOW);
-      outputbyte(0);
       digitalWrite(A4, HIGH);
+      outputbyte(0);
+      digitalWrite(A4, LOW);
     }
     if (str_in == '@')return;
     str_in = ' ';
