@@ -101,12 +101,20 @@ Public Class Form1
         End If
         textIndex = textIndex + 1
     End Sub
+
+    Dim isLight As Boolean
     Private Function LightStatus(ByVal abc As String)
+
+        If Mid(abc, 14, 1) = 1 Then
+            isLight = True
+        Else
+            isLight = False
+        End If
+
         For index = 6 To 13
             lst = Mid(abc, index, 1)
-            If Mid(abc, 14, 1) = 1 Then
-                lightsPic(index - 6).BackColor = Color.Olive
-            ElseIf lights(index - 6) = lst Then
+            If (isLight) Then lst = "0"
+            If lights(index - 6) = lst Then
                 'do nothing
             Else
                 lights(index - 6) = lst
@@ -268,7 +276,7 @@ Public Class Form1
         End If
     End Sub
     Private Sub OvalShape3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OvalShape3.Click
-        SerialPort1.Write("b")
+        SerialPort1.Write(";")
         If OvalShape3.BackColor = Color.Yellow Then
             OvalShape3.BackColor = Color.Olive
         Else
