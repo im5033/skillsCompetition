@@ -8,7 +8,9 @@ Public Class Form1
     Dim but3 As String
     Dim but4 As String
     Dim lights() As Char = {"0"c, "0"c, "0"c, "0"c, "0"c, "0"c, "0"c, "0"c}
+    Dim button() As Char = {"0"c, "0"c, "0"c, "0"c}
     Dim lightsPic() As Microsoft.VisualBasic.PowerPacks.OvalShape = {OvalShape1, OvalShape2, OvalShape3, OvalShape4, OvalShape5, OvalShape6, OvalShape7, OvalShape8}
+    Dim buttonPic() As Button = {Button17, Button26, Button28, Button29}
 
     Dim lst As Char
     Dim comPORT As String          '宣告變數com端端口'
@@ -22,6 +24,10 @@ Public Class Form1
         For Each sp As String In My.Computer.Ports.SerialPortNames
             ComboBox1.Items.Add(sp)
         Next
+        buttonPic(0) = Button17
+        buttonPic(1) = Button26
+        buttonPic(2) = Button28
+        buttonPic(3) = Button29
         lightsPic(0) = OvalShape1
         lightsPic(1) = OvalShape2
         lightsPic(2) = OvalShape3
@@ -104,7 +110,20 @@ Public Class Form1
 
     Dim isLight As Boolean
     Private Function LightStatus(ByVal abc As String)
-
+        For index = 2 To 5
+            lst = Mid(abc, index, 1)
+            If button(index - 2) = lst Then
+                'do nothing
+            Else
+                button(index - 2) = lst
+                If (lst = "1") Then
+                        buttonPic(index - 2).BackColor = Color.Yellow
+                Else
+                        buttonPic(index - 2).BackColor = Color.Olive
+                    End If
+                End If
+                'End If
+        Next
         If Mid(abc, 14, 1) = 1 Then
             isLight = True
         Else
@@ -246,6 +265,10 @@ Public Class Form1
         Label8.Text = (strMsg)
     End Sub
     Private Sub LED()
+        Button17.BackColor = Color.Olive
+        Button26.BackColor = Color.Olive
+        Button28.BackColor = Color.Olive
+        Button29.BackColor = Color.Olive
         OvalShape1.BackColor = Color.Olive
         OvalShape2.BackColor = Color.Olive
         OvalShape3.BackColor = Color.Olive
@@ -324,22 +347,6 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub Button29_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button29.Click
-
-    End Sub
-
-    Private Sub Button26_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button26.Click
-
-    End Sub
-
-    Private Sub Button28_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button28.Click
-
-    End Sub
-
-    Private Sub Button17_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button17.Click
-
-    End Sub
-
     Private Sub Button30_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button30.Click
         SerialPort1.Write("t" & Format(Now(), "ss"))
     End Sub
@@ -353,6 +360,26 @@ Public Class Form1
             SerialPort1.Write("-") '偶數
             Label9.Text = "偶數"
         End If
+    End Sub
+
+    Private Sub Button17_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Button17.MouseDown, Button26.MouseDown, Button28.MouseDown, Button29.MouseDown
+        CType(sender, Button).BackColor = Color.Yellow
+        If CType(sender, Button).Name = "Button17" Then
+            SerialPort1.Write("Q")
+        End If
+        If CType(sender, Button).Name = "Button26" Then
+            SerialPort1.Write("W")
+        End If
+        If CType(sender, Button).Name = "Button28" Then
+            SerialPort1.Write("E")
+        End If
+        If CType(sender, Button).Name = "Button29" Then
+            SerialPort1.Write("R")
+        End If
+    End Sub
+
+    Private Sub Button17_MouseUp(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Button17.MouseUp, Button26.MouseUp, Button28.MouseUp, Button29.MouseUp
+        CType(sender, Button).BackColor = Color.Olive
     End Sub
 End Class
 
