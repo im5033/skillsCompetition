@@ -15,7 +15,6 @@
 defineTask(IOProcess)
 defineTask(timer)
 volatile long count;
-//abc
 CRGB leds[NUM_LEDS];  //建立一組8個位置的陣列ws2812
 byte LEDpin = 13;
 ////////////////////////////////////////////////////////////////////////////////////
@@ -246,6 +245,7 @@ void setup()
   digitalWrite(LEDpin, HIGH);
   Serial.begin(38400);//藍芽鮑率
   Serial.setTimeout(1000);
+
   FastLED.addLeds<WS2812, LED_PIN, GRB>(leds, NUM_LEDS);
   jobnumber();
   mySCoop.start();
@@ -268,6 +268,27 @@ void IOProcess::loop()
   val2 = digitalRead(inPin2);
   val3 = digitalRead(inPin3);
   val4 = digitalRead(inPin4);
+  if (ledStatus[1] == '1' | str_in == 'Q')
+  {
+    Serial.println('0');
+    str_in = '0';
+    jobnumber();
+    ggg = 0;
+  } else if (ledStatus[2] == '1' | str_in == 'W')
+  {
+    Serial.println('6');
+    str_in = '6';
+
+  } else if (ledStatus[3] == '1' | str_in == 'E')
+  {
+    Serial.println('G');
+    str_in = 'G';
+
+  } else if (ledStatus[4] == '1'  | str_in == 'R')
+  {
+    Serial.println('@');
+    str_in = '@';
+  }
   if (Serial.available() > 0) //如果接收到的位元組數不為空
   {
     str_in_temp = Serial.read();   //把讀取到的字串放入變數裡
@@ -275,20 +296,6 @@ void IOProcess::loop()
     str_in = str_in_temp;
     //Serial.print("key in chart is : ");
     Serial.println(str_in);
-    if (val1 == LOW | str_in == 'Q')
-    {
-      jobnumber();
-      ggg = 0;
-    } else if (val2 == LOW | str_in == 'W')
-    {
-
-    } else if (val3 == LOW | str_in == 'E')
-    {
-
-    } else if (val4 == LOW | str_in == 'R')
-    {
-
-    }
     if (str_in == 'p')
     {
       isPwd = true;
@@ -334,7 +341,7 @@ void IOProcess::loop()
         isTime = false;
         tTemps = tTemps + atoi(&str_in);
         tIndex++;
-        times = tTemps + 1;
+        times = tTemps;
         Serial.println(times);
         ggg = 1;
         tIndex = 0;
@@ -440,14 +447,6 @@ void timer::loop() {
   }
 
 }
-bool light1;
-bool light2;
-bool light3;
-bool light4;
-bool light5;
-bool light6;
-bool light7;
-bool light8;
 
 void loop()
 {
@@ -461,6 +460,15 @@ void loop()
       emptyws2812();
       empty7seg();
       ggg = 0;
+      total = 0;
+      L1 = 0;
+      L2 = 0;
+      L3 = 0;
+      L4 = 0;
+      L5 = 0;
+      L6 = 0;
+      L7 = 0;
+      L8 = 0;
       EEPROM.write(passwd, 26);
 
     }
@@ -588,7 +596,8 @@ void loop()
     {
       t = 0;
       emptyws2812();
-    }////////////////////////////////////////////////////////////////////////
+    }
+    ////////////////////////////////////////////////////////////////////////
     else if (str_in == 'm') {
       digitalWrite(3, LOW);
       if (L1 == 0) {
